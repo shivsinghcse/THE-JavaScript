@@ -584,3 +584,391 @@ console.log(age);
 - **Strict mode:** Helps prevent certain unsafe or error-prone behaviors.
 - **Comments:** Use `//` for single-line comments and `/* ... */` for block comments.
 
+
+# JavaScript Notes: Data Types and `typeof`
+
+## 1. Strict Mode in JavaScript
+
+Strict mode enables a stricter set of rules for JavaScript code. It helps identify certain programming mistakes and prevents some unsafe behaviors.
+
+```javascript
+"use strict";
+
+let userName = "Shiv";
+
+console.log(userName);
+```
+
+### Important points
+
+- `"use strict";` is a directive that enables strict mode.
+- It does not switch JavaScript to the latest language version.
+- It must appear at the beginning of a script or function body, apart from comments and whitespace, to enable strict mode in that scope.
+- JavaScript modules and class bodies are strict by default.
+- Strict mode prevents assignments to undeclared variables.
+
+Example:
+
+```javascript
+"use strict";
+
+totalPopulation = 3000000; // ReferenceError
+```
+
+Correct approach:
+
+```javascript
+"use strict";
+
+let totalPopulation = 3000000;
+```
+
+**Reference:** [ECMAScript Language Specification](https://tc39.es/ecma262/)
+
+## 2. Data Types in JavaScript
+
+JavaScript has seven primitive types and one object type.
+
+### Primitive types
+
+1. String
+2. Number
+3. Boolean
+4. Undefined
+5. Null
+6. Symbol
+7. BigInt
+
+### Non-primitive values
+
+Objects include:
+- Objects
+- Arrays
+- Functions
+- Dates
+- Regular expressions
+
+Functions are a special kind of object that can be called.
+
+## 3. Primitive Data Types
+
+Primitive values are immutable, meaning their values cannot be modified in place. A variable can still be reassigned to a different primitive value if it was declared with `let`.
+
+### 3.1 String
+
+A string represents text and is written using single quotes, double quotes, or backticks.
+
+```javascript
+let firstName = "Shiv";
+let lastName = 'Singh';
+let greeting = `Hello, ${firstName}!`;
+
+console.log(firstName); // Shiv
+console.log(greeting);  // Hello, Shiv!
+console.log(typeof firstName); // string
+```
+
+### 3.2 Number
+
+The `Number` type represents integers and floating-point numbers.
+
+```javascript
+let age = 23;
+let price = 99.99;
+let temperature = -5;
+
+console.log(typeof age); // number
+console.log(typeof price); // number
+```
+
+JavaScript does not have separate primitive types for integers and floating-point numbers.
+
+#### Safe integer range
+
+The largest safe integer is:
+
+```javascript
+Number.MAX_SAFE_INTEGER;
+// 9007199254740991
+```
+
+The smallest safe integer is:
+
+```javascript
+Number.MIN_SAFE_INTEGER;
+// -9007199254740991
+```
+
+The safe integer range is:
+
+\[
+-(2^{53}-1) \text{ to } (2^{53}-1)
+\]
+
+Integers outside this range may not be represented distinctly or accurately.
+
+**Important:** The `Number` type can represent values outside this safe integer range, but not every integer in that range of magnitudes is represented exactly.
+
+### 3.3 Boolean
+
+A Boolean represents one of two values: `true` or `false`.
+
+```javascript
+let isLoggedIn = true;
+let isMarried = false;
+
+console.log(typeof isLoggedIn); // boolean
+```
+
+Booleans are commonly used in conditions and decision-making.
+
+### 3.4 Undefined
+
+A variable declared without an assigned value has the value `undefined`.
+
+```javascript
+let phoneNumber;
+
+console.log(phoneNumber);        // undefined
+console.log(typeof phoneNumber); // undefined
+```
+
+`undefined` commonly indicates that a value has not been assigned.
+
+### 3.5 Null
+
+`null` represents the intentional absence of a value.
+
+```javascript
+let address = null;
+
+console.log(address);        // null
+console.log(typeof address); // object
+```
+
+**Important interview point:** `typeof null` returns `"object"`. This is a historical JavaScript behavior and is not an indication that `null` is an object.
+
+You can check for `null` directly:
+
+```javascript
+console.log(address === null); // true
+```
+
+### 3.6 Symbol
+
+A Symbol creates a unique primitive value, often used as an object property key.
+
+```javascript
+let firstSymbol = Symbol("id");
+let secondSymbol = Symbol("id");
+
+console.log(firstSymbol === secondSymbol); // false
+console.log(typeof firstSymbol); // symbol
+```
+
+Even though both Symbols have the same description, they are distinct values.
+
+### 3.7 BigInt
+
+BigInt represents integers of arbitrary precision, subject to available memory.
+
+Append `n` to an integer literal to create a BigInt.
+
+```javascript
+let bigNumber = 123456789012345678901234567890n;
+
+console.log(bigNumber);
+console.log(typeof bigNumber); // bigint
+```
+
+BigInt is useful when integer values exceed the safe integer range of `Number`.
+
+**Important:** You cannot directly mix BigInt and Number in ordinary arithmetic operations.
+
+```javascript
+// 10n + 5; // TypeError
+
+console.log(10n + 5n); // 15n
+console.log(10n + BigInt(5)); // 15n
+```
+
+## 4. Reference Values: Objects, Arrays, and Functions
+
+Objects can contain properties and can be modified after creation.
+
+### 4.1 Object
+
+An object stores data as key-value pairs.
+
+```javascript
+const user = {
+  name: "Shiv",
+  age: 23,
+  country: "India"
+};
+
+console.log(user.name); // Shiv
+console.log(typeof user); // object
+```
+
+Object properties can be changed even when the object is assigned to a `const` variable.
+
+```javascript
+user.name = "Shiv Singh";
+
+console.log(user.name); // Shiv Singh
+```
+
+### 4.2 Array
+
+An array stores an ordered collection of values.
+
+```javascript
+const fruits = ["Apple", "Mango", "Banana"];
+
+console.log(fruits[0]); // Apple
+console.log(typeof fruits); // object
+console.log(Array.isArray(fruits)); // true
+```
+
+An array is a special kind of object.
+
+Use `Array.isArray()` when you need to determine whether a value is an array.
+
+### 4.3 Function
+
+A function is a reusable block of code that can be called.
+
+```javascript
+function greet() {
+  console.log("Hello, Shiv!");
+}
+
+greet();
+
+console.log(typeof greet); // function
+```
+
+Although functions are objects in JavaScript, `typeof` returns the special string `"function"` for callable functions.
+
+### 4.4 Other Built-in Objects
+
+**Date**
+
+```javascript
+const today = new Date();
+
+console.log(typeof today); // object
+```
+
+**RegExp**
+
+```javascript
+const pattern = /javascript/i;
+
+console.log(typeof pattern); // object
+```
+
+Both are built-in object types.
+
+## 5. The `typeof` Operator
+
+The `typeof` operator returns a string describing the type of a value.
+
+```javascript
+console.log(typeof "Shiv");       // string
+console.log(typeof 43);           // number
+console.log(typeof true);         // boolean
+console.log(typeof undefined);    // undefined
+console.log(typeof null);         // object
+console.log(typeof Symbol("id")); // symbol
+console.log(typeof 100n);         // bigint
+console.log(typeof {});           // object
+console.log(typeof []);           // object
+console.log(typeof function () {}); // function
+```
+
+### Quick revision table
+
+| Value | Result of `typeof` |
+|---|---|
+| `"Hello"` | `"string"` |
+| `42` | `"number"` |
+| `true` | `"boolean"` |
+| `undefined` | `"undefined"` |
+| `null` | `"object"` |
+| `Symbol("id")` | `"symbol"` |
+| `100n` | `"bigint"` |
+| `{}` | `"object"` |
+| `[]` | `"object"` |
+| `function () {}` | `"function"` |
+
+## 6. Primitive vs. Reference Values
+
+| Feature | Primitive values | Objects and reference values |
+|---|---|---|
+| Examples | String, Number, Boolean, Null, Undefined, Symbol, BigInt | Objects, arrays, functions |
+| Mutability | Primitive values are immutable | Objects can be mutable |
+| Assignment | Copies the primitive value | Copies the reference value |
+| Can be reassigned? | Depends on the variable declaration | Depends on the variable declaration |
+
+### Example: Primitive assignment
+
+```javascript
+let firstNumber = 10;
+let secondNumber = firstNumber;
+
+secondNumber = 20;
+
+console.log(firstNumber);  // 10
+console.log(secondNumber); // 20
+```
+
+Changing `secondNumber` does not change `firstNumber`.
+
+### Example: Object reference assignment
+
+```javascript
+const firstUser = { name: "Shiv" };
+const secondUser = firstUser;
+
+secondUser.name = "Singh";
+
+console.log(firstUser.name);  // Singh
+console.log(secondUser.name); // Singh
+```
+
+Both variables refer to the same object, so changing its property is visible through either variable.
+
+## 7. Browser vs. Node.js
+
+Some JavaScript features depend on the runtime environment.
+
+```javascript
+console.log(3 + 4); // 7
+```
+
+This works in both browsers and Node.js.
+
+```javascript
+// Browser environment
+alert("Hello, World!");
+```
+
+`alert()` is provided by browser APIs and is not available as a built-in global in standard Node.js environments.
+
+Use `console.log()` for simple output in either environment.
+
+## 8. Key Takeaways
+
+- JavaScript has seven primitive types.
+- Objects, arrays, and functions are non-primitive values.
+- Primitive values are immutable, but variables declared with `let` can be reassigned.
+- Objects can be mutable even when assigned to `const`.
+- `typeof null` returns `"object"` due to a historical quirk.
+- `typeof []` also returns `"object"`. Use `Array.isArray()` to check for arrays.
+- Use `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTEGER` to find the safe integer limits.
+- Use the `n` suffix for BigInt integer literals.
+- Strict mode enforces stricter rules; it does not select the latest JavaScript version.
+
+

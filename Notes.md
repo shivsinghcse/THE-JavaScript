@@ -972,3 +972,22 @@ Use `console.log()` for simple output in either environment.
 - Strict mode enforces stricter rules; it does not select the latest JavaScript version.
 
 
+
+
+
+
+- conver string to number using Number()
+- if you try to convert a string which can not be converted in number it will give NaN (Not a Number) and it is type of number
+
+- conversion of all datatype in Number()
+// "33" => 33
+// "33abc" => NaN
+// true => 1; false => 0
+// null => 0
+// undefined
+
+- conversion to boolean
+// 0, "" => false
+// 1, "anc" etc => true
+
+- Number to String using String()

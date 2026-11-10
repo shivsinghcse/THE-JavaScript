@@ -145,3 +145,71 @@ My suggestion for your notes: Keep these two topics under the heading `JavaScrip
 2. JavaScript Keywords and Reserved Words
 
 For the complete authoritative list, refer to the [ECMAScript Language Specification](https://tc39.es/ecma262/?utm_source=chatgpt.com).
+
+
+--- 
+Operators: 
+- Uniary operators
+- Binary Operators
+- Ternary operators
+
+- practice Uniary operator
+
+```js
+let a = 5;
+a = a++;
+console.log(a);
+```
+Let's evaluate it step by step.
+
+```
+let a = 5;
+a = a++;
+console.log(a);
+```
+
+Output: 5
+
+### Why is the output 5?
+
+The key concept here is post-increment (`a++`).
+
+1. Initially, `a = 5`.
+2. `a++` returns the current value of `a`, which is `5`.
+3. After returning the value, it increments `a` to `6`.
+4. The assignment `a = 5` then overwrites `a` with `5`.
+
+Therefore:
+
+```
+console.log(a); // 5
+```
+
+### Important difference
+
+| Expression | Result                                   |
+| ---------- | ---------------------------------------- |
+| `a++`      | Returns old value, then increments       |
+| `++a`      | Increments first, then returns new value |
+
+Compare:
+
+```
+let a = 5;
+a = a++;
+console.log(a); // 5
+```
+
+```
+let b = 5;
+b = ++b;
+console.log(b); // 6
+```
+
+Interview takeaway: Post-increment returns the old value, but pre-increment returns the updated value.
+
+
+b = 5 + 6 + 8 = 19
+a = 19
+
+toUpperCase() does not modify orignal string.

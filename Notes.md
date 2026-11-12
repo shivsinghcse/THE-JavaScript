@@ -991,3 +991,18 @@ Use `console.log()` for simple output in either environment.
 // 1, "anc" etc => true
 
 - Number to String using String()
+
+// seprateting files : 
+// - readability
+// - modular
+// - browser caching
+// console.log vs console.dir()
+
+// document.getElementById("#id") - returns a unique element if not present it returns null
+// document.getElementsByClassName(".classname") - returns a HTML collections it is an array like iterable if not present it returns HTMLCollection of length 0
+// document.getElementByTagName("p") - returns a HTML collections it is an array like iterable if not present it returns HTMLCollection of length 0
+
+// document.querySelector() - return first mathing element
+// document.querySelectorAll() - return a nodelist
+// first child, lastchild
+// nodes DOM tree : text node, comment node, elements node

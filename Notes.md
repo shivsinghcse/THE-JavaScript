@@ -1006,3 +1006,5 @@ Use `console.log()` for simple output in either environment.
 // document.querySelectorAll() - return a nodelist
 // first child, lastchild
 // nodes DOM tree : text node, comment node, elements node
+// attribute
+// appendChild, removeChild

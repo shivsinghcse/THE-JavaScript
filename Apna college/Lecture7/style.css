@@ -1,0 +1,10 @@
+.paragraph {
+    border: 1px solid black;
+    padding: 7px 15px;
+}
+
+.para{
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 3px;
+}
